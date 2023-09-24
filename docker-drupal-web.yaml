@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    image: sandeep10rana/docker-drupal:v1.0
+    ports:
+      - "80:80"
+    volumes:
+      - website-data:/var/www/html/
+    deploy:
+      replicas: 1
+
+volumes:
+  website-data:
+
