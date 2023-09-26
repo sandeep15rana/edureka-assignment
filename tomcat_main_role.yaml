@@ -1,0 +1,36 @@
+
+- name: Install default JDK
+  apt:
+    name: default-jdk
+    state: present
+
+- name: Create Tomcat group
+  group:
+    name: tomcat
+
+- name: Create Tomcat user
+  user:
+    name: tomcat
+    group: tomcat
+    system: no
+    shell: /bin/false
+    home: /opt/tomcat
+
+- name: Download Apache Tomcat
+  get_url:
+    url: http://redrockdigimark.com/apachemirror/tomcat/tomcat-8/v8.5.31/bin/apache-tomcat-8.5.31.tar.gz
+    dest: /tmp/apache-tomcat-8.5.31.tar.gz
+
+- name: Extract Apache Tomcat
+  unarchive:
+    src: /tmp/apache-tomcat-8.5.31.tar.gz
+    dest: /opt/tomcat
+    remote_src: yes
+
+- name: Change Tomcat directory ownership
+  file:
+    path: /opt/tomcat
+    owner: tomcat
+    group: tomcat
+    recurse: yes
+

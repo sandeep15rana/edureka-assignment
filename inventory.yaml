@@ -1,0 +1,12 @@
+all:
+  hosts:
+    host1:
+      ansible_host: 10.128.0.13
+      ansible_user: sandeep100rana
+      ansible_ssh_private_key_file: /home/sandeep100rana/target_key
+
+  children:
+    ansible-target:
+      hosts:
+        host1:
+

@@ -1,0 +1,8 @@
+
+- name: Provision Production Environment
+  hosts: ansible-target
+  become: yes
+
+  roles:
+    - tomcat_role
+    - maven_role
